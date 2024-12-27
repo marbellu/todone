@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:fontFamily">@font/inter</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorAccent">@color/secondary</item>
+    </style>
+
+
+    <style name="date">
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:paddingLeft">0dp</item>
+    </style>
+
+    <style name="LightDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:textColor">@color/secondary</item>
+        <item name="colorAccent">#232023</item>
+        <item name="fontFamily">@font/inter</item>
+        <item name="buttonBarButtonStyle">@style/DialogButtonStyle</item>
+    </style>
+
+    <style name="DialogButtonStyle" parent="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:layout_marginStart">4dp</item>
+        <item name="fontFamily">@font/inter</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:background">@drawable/rounded_corners_editext</item>
+    </style>
+
+    <style name="date_picker_style" parent="ThemeOverlay.AppCompat.Dialog">
+        <item name="colorAccent">@color/primary</item>
+        <item name="fontFamily">@font/inter</item>
+        <item name="buttonBarButtonStyle">@style/DialogButtonStyle</item>
+    </style>
+
+</resources>

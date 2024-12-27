@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:layout_marginBottom="12dp"
+    android:padding="14dp"
+    android:background="@drawable/rounded_corners_editext">
+
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@drawable/custom_checkbox"
+        android:gravity="center"
+        android:layout_marginEnd="8dp"/>
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="8dp">
+
+        <!-- Title on top -->
+        <TextView
+            android:id="@+id/title_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:contentDescription="@string/to_do_task"
+            android:focusable="true"
+            android:fontFamily="@font/inter_semibold"
+            android:maxLength="25"
+            android:text="Task title"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/h2" />
+
+        <!-- Tag and Calendar on bottom -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp">
+
+            <!-- Tag  -->
+            <LinearLayout
+                android:id="@+id/tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:baselineAligned="true"
+                android:layout_marginEnd="20dp">
+
+                <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="4dp"
+                    app:tint="@color/supporting_darker"
+                    android:src="@drawable/mditag" />
+
+                <TextView
+                    android:id="@+id/tag_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/supporting_darker"
+                    android:text="Tag"
+                    android:fontFamily="@font/inter"
+                    android:textSize="@dimen/labels" />
+            </LinearLayout>
+
+
+
+            <!-- Calendar -->
+            <LinearLayout
+                android:id="@+id/calendar_wrapper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:baselineAligned="true">
+
+                <ImageView
+                    android:id="@+id/calendar_icon"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="4dp"
+                    app:tint="@color/supporting_darker"
+                    android:src="@drawable/mdicalendar" />
+
+                <TextView
+                    android:id="@+id/date_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="20.12.2000"
+                    android:textColor="@color/supporting_darker"
+                    android:fontFamily="@font/inter"
+                    android:textSize="@dimen/labels"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    <ImageButton
+        android:id="@+id/delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/min_height"
+        android:radius="40dp"
+        android:contentDescription="@string/delete_task"
+        android:backgroundTint="@color/secondary"
+        android:src="@drawable/mdidelete"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

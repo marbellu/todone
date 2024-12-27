@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Task Book with Fire</string>
+    <string name="button_save">Save</string>
+    <string name="hint_task">To do</string>
+    <string name="empty_not_saved">Task cannot be empty</string>
+    <string name="add_task">Add task</string>
+    <string name="detail">details</string>
+    <string name="is_done">Is done</string>
+    <string name="due_date_is"> %1$s </string>
+
+    <string name="sort_by_date_menu">Sort by due date</string>
+    <string name="sort_new_items_first_menu">Sort by new items</string>
+    <string name="show_only_completed">Show completed tasks</string>
+    <string name="delete_task">delete task</string>
+    <string name="to_do_task">To do task</string>
+    <string name="is_task_done">is task done?</string>
+    <string name="date_hint">Date</string>
+    <string name="login_text">Login</string>
+    <string name="eemil_esimerkki_geemai_com">eemil.esimerkki@geemai.com</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">*******</string>
+    <string name="password">Password</string>
+    <string name="don_t_have_an_account_create_account_here">Don\'t have an account?</string>
+    <string name="login_button_text">Login</string>
+    <string name="register_textview">Register</string>
+    <string name="create_account_button">Create account</string>
+    <string name="already_have_an_account_login_here">Already have an account? Login here</string>
+    <string name="sign_out">Sign out</string>
+    <string name="sign_up_text"><u>Sign up</u></string>
+    <string name="sign_up">Sign up</string>
+    <string name="login_underline"><u>Login</u></string>
+</resources>
