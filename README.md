@@ -35,12 +35,11 @@ When I first started this project, my main focus was on core functionality - imp
 New version is much more consistent and looks modern and simple. I took more things into consideration when redesigning Todone. For example, I added a tagging system and made the home page clearer. I changed the fonts and colors to create a more cohesive and user-friendly experience.
 
 ## Features and Technical Stack
-
 ### Core Features
-The current version of Todone includes several core features that make it a functional and user-friendly task management app:
-Core Features
 
-User authentication system allowing secure access to personal tasks
+The current version of Todone includes several core features that make it a functional and user-friendly task management app:
+
+- User authentication system allowing secure access to personal tasks
 - Create, edit (the UI needs to be modified), and delete tasks with customizable details
 - Task tagging system for better organization
 - Advanced filtering system:
