@@ -12,7 +12,7 @@
   - [Firebase setup](#firebase-setup)
 
 ## Introduction
-This simple Todo app was created to practice Android development using Kotlin and Firebase. The evolution of this app reflects my learning journey in Android development. What started as a basic functional todo list transformed into a more polished application as I deepened my understanding of UI/UX principles and Android development best practices. Looking ahead, I plan to further enhance the app with additional features and optimizations.
+This simple Todo app was created to practice Android development using Kotlin and Firebase. The evolution of this app reflects my learning journey in Android development. What started as a basic functional todo list transformed into a more polished application as I deepened my understanding of UI/UX principles and Android development best practices.
 
 ## Project evolution
 
