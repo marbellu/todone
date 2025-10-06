@@ -40,6 +40,8 @@ An Android task management app built with Kotlin and Firebase, featuring tag-bas
 3. Build & run 
 
 
+<pre>
 
-
-![Home page](images/home.png)
+<p align="center">
+  <img src="images/home.png" alt="Home page"/>
+</p>
