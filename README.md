@@ -10,7 +10,6 @@ An Android task management app built with Kotlin and Firebase, featuring tag-bas
 ## Features
 - Firebase Authentication (email/password)
 - Real-time task sync with Cloud Firestore
-- Tag-based organization
 - Multi-criteria filtering (tags, completion status, due date)
 
 ## Setup & Installation
