@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_marginRight="@dimen/side_padding"
+    android:layout_gravity="center"
     android:layout_marginLeft="@dimen/side_padding"
     android:layout_height="match_parent">
 
@@ -13,129 +14,149 @@
         android:layout_height="?attr/actionBarSize"
         app:layout_constraintTop_toTopOf="parent"/>
 
+
+
     <LinearLayout
         android:id="@+id/tag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:baselineAligned="true"
         android:orientation="horizontal"
-        android:paddingTop="6dp"
-        android:paddingBottom="6dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        android:paddingVertical="4dp"
+        android:layout_marginBottom="2dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintBottom_toTopOf="@id/linearLayout"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.5">
 
-        <ViewSwitcher
-            android:id="@+id/title_switcher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/detail_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:fontFamily="@font/inter_semibold"
-                android:maxLength="25"
-                android:text="title"
-                android:textColor="@color/primary"
-                android:textSize="@dimen/h1" />
+            <ViewSwitcher
+                android:id="@+id/title_switcher"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/detail_title_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:fontFamily="@font/inter_semibold"
-                android:textCursorDrawable="@drawable/cursor"
-                android:maxLength="25"
-                android:text="title"
-                android:textColor="@color/primary"
-                android:textSize="@dimen/h1"/>
-
-        </ViewSwitcher>
-
-        <ImageView
-            android:id="@+id/icon"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="14dp"
-            android:layout_marginEnd="4dp"
-            android:src="@drawable/mditag" />
-
-        <ViewSwitcher
-            android:id="@+id/tag_switcher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/tag_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="Tag"
-                android:textColor="#333333"
-                android:textSize="14sp" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
-
-                <AutoCompleteTextView
-                    android:id="@+id/tag_autocomplete"
+                <TextView
+                    android:id="@+id/detail_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/inter"
-                    android:background="@drawable/rounded_corners_editext"
-                    android:hint="Enter or select a tag"/>
+                    android:layout_gravity="center_vertical"
+                    android:padding="4dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:maxLength="40"
+                    android:text="title"
+                    android:textColor="@color/primary"
+                    android:textSize="@dimen/h3" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                <EditText
+                    android:id="@+id/detail_title_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/inter_semibold"
+                    android:maxLength="40"
+                    android:text="title"
+                    android:textColor="@color/primary"
+                    android:textCursorDrawable="@drawable/cursor"
+                    android:textSize="@dimen/h3" />
 
-        </ViewSwitcher>
+            </ViewSwitcher>
+
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="2dp"
+                android:src="@drawable/mditag" />
+
+            <ViewSwitcher
+                android:id="@+id/tag_switcher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tag_text"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Tag"
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/tag_autocomplete"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_corners_editext"
+                        android:fontFamily="@font/inter"
+                        android:hint="Enter or select a tag" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </ViewSwitcher>
+        </LinearLayout>
+
 
         <Button
             android:id="@+id/edit_button"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:backgroundTint="@color/secondary"
+            android:background="@drawable/customborder"
             android:fontFamily="@font/inter"
-            android:text="edit"
-            android:textColor="@color/primary" />
+            android:text="@string/edit"
+            android:textColor="@color/secondary" />
 
     </LinearLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:backgroundTint="@color/supporting_darker"
+        app:layout_constraintTop_toBottomOf="@id/tag"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="200dp"
         android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/tag"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_marginTop="4dp">
 
         <ViewSwitcher
             android:id="@+id/details_switcher"
             android:layout_width="wrap_content"
+            android:paddingVertical="16dp"
+            android:maxLength="300"
             android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/detail_details"
+                android:paddingVertical="6dp"
+                android:layout_margin="0dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/big_padding"
                 android:fontFamily="@font/inter_medium"
-                android:maxLength="100"
                 android:minHeight="@dimen/min_height"
                 android:text="This is task description. Here you can write anything related to the todo"
                 android:textColor="@color/tertiary"
@@ -145,9 +166,9 @@
                 android:id="@+id/detail_details_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/big_padding"
+                android:paddingVertical="6dp"
+                android:layout_margin="0dp"
                 android:fontFamily="@font/inter_medium"
-                android:maxLength="100"
                 android:textCursorDrawable="@drawable/cursor"
                 android:minHeight="@dimen/min_height"
                 android:text="This is task description. Here you can write anything related to the todo"
@@ -160,19 +181,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_corners_editext"
+            android:paddingVertical="8dp"
+            android:paddingHorizontal="12dp"
             android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="12dp">
+            android:orientation="horizontal">
+
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="12dp"
                 android:src="@drawable/mdicalendar" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center|bottom"
                 android:orientation="vertical">
 
                 <TextView
@@ -185,42 +209,49 @@
 
                 <ViewSwitcher
                     android:id="@+id/date_switcher"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
 
                     <TextView
                         android:id="@+id/date_value"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter"
+                        android:gravity="center_vertical"
+                        android:fontFamily="@font/inter_medium"
                         android:text="Nov 15, 2020"
                         android:textColor="#000000"
-                        android:textSize="@dimen/h3" />
+                        android:textSize="@dimen/h3"
+                        android:includeFontPadding="false"
+                        android:padding="0dp" />
 
                     <Button
                         android:id="@+id/date_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/rounded_corners_editext"
+                        android:gravity="center_vertical"
+                        android:background="@android:color/transparent"
                         android:fontFamily="@font/inter_medium"
-                        app:backgroundTint="@null"
                         android:textColor="@color/primary"
-                        android:layout_marginBottom="20dp"
-                        android:text="dd.mm.yyyy" />
+                        android:text="@string/date"
+                        android:textAllCaps="false"
+                        android:includeFontPadding="false"
+                        android:padding="0dp" />
                 </ViewSwitcher>
 
             </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/detail_is_done_view"
+        <Button
+            android:id="@+id/done_button"
+            android:text="mark as done"
             android:layout_width="match_parent"
+            android:background="@drawable/customborder"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/big_padding"
-            android:fontFamily="sans-serif-light"
             android:maxLength="100"
             android:minHeight="@dimen/min_height"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

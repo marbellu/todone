@@ -1,7 +1,6 @@
 package com.example.taskbookwithfire.ui.screens
 
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
@@ -32,8 +31,10 @@ class TaskDetailActivity : AppCompatActivity() {
     private lateinit var detailsEdit: EditText
     private lateinit var dateButton: Button
     private lateinit var tagAutoComplete: AutoCompleteTextView
+    private lateinit var isDone: Button
     private var selectedLocalDate: LocalDate? = null
     private var isEditMode = false
+    private var isTaskDone = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,9 +45,16 @@ class TaskDetailActivity : AppCompatActivity() {
         setupDatePicker()
         setupEditButton()
 
+
         val menu = findViewById<ImageButton>(R.id.menu_icon)
         menu.setOnClickListener {
             finish()
+        }
+
+        isDone.setOnClickListener {
+            isTaskDone = !isTaskDone
+            updateDoneButtonText()
+            updateDoneStatusOnly()
         }
     }
 
@@ -60,53 +68,70 @@ class TaskDetailActivity : AppCompatActivity() {
         detailsEdit = findViewById(R.id.detail_details_edit)
         dateButton = findViewById(R.id.date_edit)
         tagAutoComplete = findViewById(R.id.tag_autocomplete)
+        isDone = findViewById(R.id.done_button)
     }
 
     private fun loadInitialData() {
-        val toDo = intent.getStringExtra("TODO_TITLE")
-        val details = intent.getStringExtra("TODO_DETAILS")
-        val dateString = intent.getStringExtra("TODO_DATE")
-        val tag = intent.getStringExtra("TODO_TAG")
+        val taskId = intent.getStringExtra("TODO_ID") ?: return
 
-        val tagAdapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_dropdown_item_1line,
-            mutableListOf<String>()
-        )
-        tagAutoComplete.setAdapter(tagAdapter)
+        Firebase.firestore.collection("tasks").document(taskId).get()
+            .addOnSuccessListener { doc ->
+                val task = doc.toObject(Task::class.java) ?: return@addOnSuccessListener
 
+                titleEdit.setText(task.title)
+                detailsEdit.setText(task.description)
+                tagAutoComplete.setText(task.tag)
+                selectedLocalDate = Converters.toLocalDate(task.date)
+                findViewById<TextView>(R.id.detail_title).text = task.title
+                findViewById<TextView>(R.id.detail_details).text = task.description
+                findViewById<TextView>(R.id.tag_text).text = task.tag
 
-        FirebaseAuth.getInstance().currentUser?.uid?.let { userId ->
-            Firebase.firestore
-                .collection("tasks")
-                .whereEqualTo("userId", userId)
-                .get()
-                .addOnSuccessListener { documents ->
-                    val tags = documents.mapNotNull { it.getString("tag") }.distinct()
-                    tagAdapter.clear()
-                    tagAdapter.addAll(tags)
-                    tagAdapter.notifyDataSetChanged()
+                val formattedDate = Converters.toLocalDate(task.date)?.let {
+                    "${it.month.toString().substring(0,3).lowercase().replaceFirstChar { c -> c.uppercase() }} ${it.dayOfMonth}, ${it.year}"
                 }
-        }
+                findViewById<TextView>(R.id.date_value).text = formattedDate
+                dateButton.text = formattedDate
 
-        titleEdit.setText(toDo)
-        detailsEdit.setText(details)
-        tagAutoComplete.setText(tag)
 
-        findViewById<TextView>(R.id.detail_title).text = toDo
-        findViewById<TextView>(R.id.detail_details).text = details
-        findViewById<TextView>(R.id.tag_text).text = tag
-
-        val converters = Converters
-        val date = converters.toLocalDate(dateString)
-        selectedLocalDate = date
-        val dueDate = date?.let {
-            "${it.month.toString().substring(0, 3).lowercase().replaceFirstChar { it.uppercase() }} ${it.dayOfMonth}, ${it.year}"
-        }
-        dateButton.text = dueDate
-        findViewById<TextView>(R.id.date_value).text = dueDate
+                isTaskDone = task.done
+                updateDoneButtonText()
+            }
     }
 
+
+    private fun updateDoneButtonText() {
+        isDone.text = if (isTaskDone) "Mark as undone" else "Mark as done"
+    }
+
+    private fun updateDoneStatusOnly() {
+        val taskId = intent.getStringExtra("TODO_ID") ?: return
+        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
+
+        lifecycleScope.launch {
+            val title = findViewById<TextView>(R.id.detail_title).text.toString()
+            val details = findViewById<TextView>(R.id.detail_details).text.toString()
+            val tag = findViewById<TextView>(R.id.tag_text).text.toString()
+            val date = selectedLocalDate?.toString() ?: intent.getStringExtra("TODO_DATE") ?: ""
+
+            val updatedTask = Task(
+                id = taskId,
+                userId = userId,
+                title = title,
+                description = details,
+                done = isTaskDone,
+                date = date,
+                tag = tag
+            )
+
+            TaskRepository().updateTask(updatedTask)
+
+            Toast.makeText(
+                this@TaskDetailActivity,
+                if (isTaskDone) "Task is done" else "Task is not done",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
 
     private fun setupDatePicker() {
         dateButton.setOnClickListener {
@@ -179,7 +204,6 @@ class TaskDetailActivity : AppCompatActivity() {
         val detailDetails = findViewById<TextView>(R.id.detail_details)
         val tagText = findViewById<TextView>(R.id.tag_text)
         val dateValue = findViewById<TextView>(R.id.date_value)
-        val isDoneView = findViewById<TextView>(R.id.detail_is_done_view)
 
         lifecycleScope.launch {
             val task = FirebaseAuth.getInstance().currentUser?.uid?.let {
@@ -188,7 +212,7 @@ class TaskDetailActivity : AppCompatActivity() {
                     id = intent.getStringExtra("TODO_ID") ?: "",
                     title = titleEdit.text.toString(),
                     description = detailsEdit.text.toString(),
-                    done = isDoneView.text == "Done",
+                    done = isTaskDone,
                     date = selectedLocalDate.toString(),
                     tag = tagAutoComplete.text.toString()
                 )
