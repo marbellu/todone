@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
+import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -18,7 +19,6 @@ class RegistrationActivity : AppCompatActivity() {
     private lateinit var passwordEditText: EditText
     private lateinit var registerButton: Button
     private lateinit var redirectToLogin: TextView
-    //private lateinit var menuIcon: ImageButton
 
     private lateinit var auth: FirebaseAuth
 
@@ -35,12 +35,9 @@ class RegistrationActivity : AppCompatActivity() {
             finish()
         }
 
-        //menuIcon = findViewById(R.id.menu_icon)
-        //menuIcon.visibility = View.GONE
-
-
         emailEditText = findViewById(R.id.email_edittext)
         passwordEditText =  findViewById(R.id.signup_password)
+        passwordEditText.inputType = EditorInfo.TYPE_TEXT_FLAG_NO_SUGGESTIONS
         passwordEditText.transformationMethod = PasswordTransformationMethod.getInstance()
         registerButton = findViewById(R.id.signup_button)
 

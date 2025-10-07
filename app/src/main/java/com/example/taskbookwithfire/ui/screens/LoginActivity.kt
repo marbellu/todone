@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.text.method.PasswordTransformationMethod
-import android.util.Log
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -42,17 +42,18 @@ class LoginActivity: AppCompatActivity() {
 
             emailEditText = findViewById(R.id.email_edittext)
         passwordEditText = findViewById(R.id.signup_password)
+        passwordEditText.inputType = EditorInfo.TYPE_TEXT_FLAG_NO_SUGGESTIONS
         passwordEditText.transformationMethod = PasswordTransformationMethod.getInstance()
+
 
         loginButton = findViewById(R.id.login_button)
         loginButton.setOnClickListener {
-            loginUser();
+            loginUser()
         }
     }
 
     private fun loginUser() {
         val email = emailEditText.getText().toString().trim()
-        Log.d("TAG", "email $email")
         val password = passwordEditText.getText().toString()
 
         if (TextUtils.isEmpty(email)  || TextUtils.isEmpty(password)) {
