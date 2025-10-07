@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Task Book with Fire</string>
+    <string name="app_name">Todone</string>
     <string name="button_save">Save</string>
     <string name="hint_task">To do</string>
     <string name="empty_not_saved">Task cannot be empty</string>
@@ -16,7 +16,6 @@
     <string name="is_task_done">is task done?</string>
     <string name="date_hint">Date</string>
     <string name="login_text">Login</string>
-    <string name="eemil_esimerkki_geemai_com">eemil.esimerkki@geemai.com</string>
     <string name="email_hint">Email</string>
     <string name="password_hint">*******</string>
     <string name="password">Password</string>
@@ -29,4 +28,6 @@
     <string name="sign_up_text"><u>Sign up</u></string>
     <string name="sign_up">Sign up</string>
     <string name="login_underline"><u>Login</u></string>
+    <string name="edit">edit</string>
+    <string name="date">dd.mm.yyyy</string>
 </resources>
